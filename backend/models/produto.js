@@ -20,7 +20,7 @@ const Produto = db.define('produto',{
     },
 
     valorProduto:{
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         allowNull: true
     }
 })

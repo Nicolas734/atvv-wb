@@ -20,7 +20,7 @@ const Servico = db.define('servicos',{
     },
 
     valorServico:{
-        type: Sequelize.NUMBER,
+        type: Sequelize.INTEGER,
         allowNull: true,        
     }
 })

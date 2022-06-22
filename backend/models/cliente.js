@@ -5,36 +5,28 @@ const Cliente = db.define('cliente',{
     id:{
         type:Sequelize.INTEGER,
         autoIncrement:true,
-        allowNull:false,
         primaryKey:true
     },
     nome:{
-        type:Sequelize.STRING,
-        allowNull:true,
+        type:Sequelize.STRING
     },
     nomeSocial:{
-        type:Sequelize.STRING,
-        allowNull:true
+        type:Sequelize.STRING
     },
     genero:{
-        type:Sequelize.STRING,
-        allowNull:true
+        type:Sequelize.STRING
     },
     cpf:{
-        type:Sequelize.STRING,
-        allowNull:true
+        type:Sequelize.STRING
     },
     rg:{
-        type:Sequelize.STRING,
-        allowNull:true
+        type:Sequelize.STRING
     },
     dataCadastro:{
-        type:Sequelize.DATE,
-        allowNull:true
+        type:Sequelize.DATE
     },
     telefone:{
-        type:Sequelize.NUMBER,
-        allowNull:true
+        type:Sequelize.STRING
     }
 
 })
