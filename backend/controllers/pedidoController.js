@@ -37,7 +37,7 @@ export const deletePedido = async (req,res) => {
     try{
         const pedido = await Pedido.destroy({
             where:{
-                id:req.params.id
+                ped_id:req.params.id
             }
         })
         const id = req.params.id
@@ -52,7 +52,7 @@ export const listaPedidoById = async (req,res) => {
     try{
         const pedido = await Pedido.findOne({
             where:{
-                id:req.params.id
+                ped_id:req.params.id
             }
         })
         res.status(201).json(pedido)

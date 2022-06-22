@@ -1,23 +1,17 @@
 import db from "./config/db.js";
 import express from "express";
 import cors from "cors";
-import Cliente from "./models/cliente.js";
-import Pedido from "./models/pedido.js";
-import Servico from "./models/servico.js";
-import Produto from "./models/produto.js";
 import clienteRouter from "./routes/clienteRouter.js";
 import produtoRouter from "./routes/produtoRouter.js";
 import servicoRouter from "./routes/servicoRouter.js";
 import pedidoRouter from "./routes/pedidoRouter.js";
+import listagemRouter from "./routes/listagensRouter.js";
 
 const app = express();
 
 try {
     db.authenticate().then(()=>{
-        Cliente.sync({force:true})
-        Pedido.sync({force:true})
-        Servico.sync({force:true})
-        Produto.sync({force:true})
+        db.sync()
         console.log('Banco de Dados Conectado.');
     });
     
@@ -36,5 +30,7 @@ app.use('/produto', produtoRouter);
 app.use('/servico', servicoRouter);
 
 app.use('/pedido', pedidoRouter);
+
+app.use('/listagem', listagemRouter);
 
 app.listen(5000, ()=> console.log(`Servidor rodando na 5000`));

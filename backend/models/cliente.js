@@ -1,7 +1,7 @@
 import db from "../config/db.js";
 import { Sequelize } from "sequelize";
 
-const Cliente = db.define('cliente',{
+const Cliente = db.define('clientes',{
     id:{
         type:Sequelize.INTEGER,
         autoIncrement:true,
@@ -28,7 +28,6 @@ const Cliente = db.define('cliente',{
     telefone:{
         type:Sequelize.STRING
     }
-
 })
 
 export default Cliente
