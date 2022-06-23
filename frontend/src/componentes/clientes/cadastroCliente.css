@@ -1,0 +1,34 @@
+.containerCli{
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 6rem;
+    text-align: center; 
+}
+
+.formCli{
+    margin-top: 6rem;
+}
+
+/* .nome{
+    color: #f06292;
+} */
+
+.nomeCli{
+    color:black;
+}
+
+.collection-item{
+    color:rgb(26, 22, 22) !important;
+}
+
+.button{
+    margin-top: 2rem;
+    }
+
+.dropdown-content li>a, .dropdown-content li>span {
+        font-size: 16px;
+        color: #050504;
+        display: block;
+        line-height: 22px;
+        padding: 14px 16px;
+}

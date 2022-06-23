@@ -20,10 +20,6 @@ const Pedido = db.define('pedidos',{
     serv_id:{
         type:Sequelize.INTEGER,
         allowNull:true
-    },
-    valorPedido:{
-        type:Sequelize.INTEGER,
-        allowNull:true
     }
 })
 
