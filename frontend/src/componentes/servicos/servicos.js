@@ -3,7 +3,7 @@ import '../clientes/cadastroCliente.css'
 import { useEffect, useState } from 'react';
 import M from 'materialize-css'
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function Servico(){
 
@@ -50,17 +50,17 @@ export default function Servico(){
                     <div className="collapsible-body">
 
                         <div className="input-field col s12">
-                            <input id="Descricao_servico" type="text" value={descricaoServico} onChange={()=>setDescricaoServico(descricaoServico)} className="validate"/>
+                            <input disabled id="Descricao_servico" type="text" value={descricaoServico} onChange={()=>setDescricaoServico(descricaoServico)} className="validate"/>
                             <label className="active" htmlFor="Descricao_servico">Descrição do serviço</label>
                         </div>
 
                         <div className="input-field col s12">
-                            <input id="Valor_servico" type="text"  value={valorServico} onChange={()=>setValorServico(valorServico)} className="validate"/>
+                            <input disabled id="Valor_servico" type="text"  value={valorServico} onChange={()=>setValorServico(valorServico)} className="validate"/>
                             <label className="active" htmlFor="Valor_servico">Valor do serviço</label>
                         </div>
 
                         <div className="input-field col s12">
-                            <input id="Codigo_identificacao" type="text"  value={id} className="validate"/>
+                            <input disabled id="Codigo_identificacao" type="text"  value={id} className="validate"/>
                             <label className="active" htmlFor="Codigo_identificacao">Código de identificação</label>
                         </div>
 
@@ -70,7 +70,9 @@ export default function Servico(){
 
             <div className="row">
                 <div className="col s12 center">
-                    <button className="btn waves-effect pink lighten-2 button" type="submit" name="action">Atualizar</button>
+                <Link to={`/AtualizaServico/${id}`}>
+                    <button className="btn waves-effect pink lighten-2 button botaoAtualiza" type="submit" name="action">Atualizar</button>
+                </Link>
                     <button className="btn waves-effect pink lighten-2 button" type="submit" name="action" onClick={deletarServico}>Deletar Serviço</button>
                 </div>
             </div>

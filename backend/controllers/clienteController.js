@@ -1,4 +1,8 @@
 import Cliente from "../models/cliente.js";
+import Pedido from "../models/pedido.js"
+import Produto from "../models/produto.js"
+import Servico from "../models/servico.js"
+import { Op } from "sequelize";
 
 
 export const criaCliente = async (req, res) => {
@@ -69,9 +73,35 @@ export const listaClienteById = async (req,res) => {
         const cliente = await Cliente.findOne({
             where:{
                 id:req.params.id
+            },
+            include:{
+                model:Pedido,
+                attributes:['id'],
+                include:[{
+                    model:Produto,
+                    attributes:['id', 'nomeProduto', 'descricaoProduto', 'valorProduto']
+                },{
+                    model:Servico,
+                    attributes:['id','nomeServico', 'descricaoServico', 'valorServico']
+                }]
             }
         })
         res.status(201).json(cliente)
+
+    }catch(error){
+        res.status(500).json({ message:error })
+    }
+}
+
+export const getCliByCpf = async(req,res) => {
+    try{
+        const cliente = await Cliente.findOne({
+            where:{
+                cpf:{ [Op.like]: `%${req.query.cpf}%` }
+            }
+        })
+
+        res.json(cliente)
 
     }catch(error){
         res.status(500).json({ message:error })

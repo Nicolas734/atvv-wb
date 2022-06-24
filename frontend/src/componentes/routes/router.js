@@ -11,6 +11,9 @@ import ListaProdutos from "../produtos/listaProduto";
 import ListaServicos from "../servicos/listaServicos";
 import Listagens from "../listagens/listagens";
 import RealizarPedido from "../pedidos/realizarPedido";
+import AtualizaProduto from '../produtos/atualizaProduto';
+import AtualizaServico from '../servicos/atualizaServico'
+import AtualizaCliente from '../clientes/atualizaCliente'
 
 export default function Rotas(){
     return(
@@ -28,6 +31,9 @@ export default function Rotas(){
             <Route path="/Servico/:id" element={<Servico tema="purple lighten-4"/>}/>
             <Route path="/Listagens" element={<Listagens tema="purple lighten-4"/>}/>
             <Route path="/Pedidos" element={<RealizarPedido tema="purple lighten-4"/>}/>
+            <Route path="/AtualizaProduto/:id" element={<AtualizaProduto tema="purple lighten-4"/>}/>
+            <Route path="/AtualizaServico/:id" element={<AtualizaServico tema="purple lighten-4"/>}/>
+            <Route path="/AtualizaCliente/:id" element={<AtualizaCliente tema="purple lighten-4"/>}/>
         </Routes>
     )
 }

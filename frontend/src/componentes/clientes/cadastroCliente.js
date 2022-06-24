@@ -1,5 +1,6 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import "../clientes/cadastroCliente.css";
+import M from 'materialize-css'
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 
@@ -30,7 +31,18 @@ export default function CadastroCliente(){
         }) 
     };
 
+    const filtraGenero = (id)=>{
+        if(id === '1'){        
+            setGenero('M');
+        }if(id === '2'){
+            setGenero('F');
+        }if(id === '3'){
+            setGenero('N');
+        } 
+    }
+
     useEffect(()=>{
+        M.AutoInit()
     }, []);
 
     return (
@@ -51,8 +63,13 @@ export default function CadastroCliente(){
 
                         <div className="row">
                             <div className="input-field col s6 ">
-                                <input value={genero} id="Genero" type="text" className="validate" onChange={e=>setGenero(e.target.value)}/>
-                                <label htmlFor="Genero">Gênero</label>
+                                <select onChange={(e) => filtraGenero(e.target.value)}>
+                                    <option value="" disabled selected>M: Masc. / F: Fem. / N: Não Infor.</option>
+                                    <option value="1">M</option>
+                                    <option value="2">F</option>
+                                    <option value="3">N</option>
+                                </select>
+                                <label>Gênero</label>
                             </div>
                             <div className="input-field col s6">
                                 <input value={telefone} id="Telefone" type="text" className="validate" onChange={e=>setTelefone(e.target.value)}/>

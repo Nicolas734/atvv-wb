@@ -48,17 +48,17 @@ export default function Produto(props){
                             <div className="collapsible-body">
                                     
                                 <div className="input-field col s12">
-                                    <input id="Descrição_produto" type="text" value={descricaoProduto} onChange={()=>setDescricaoProduto(descricaoProduto)} className="validate"/>
+                                    <input disabled id="Descrição_produto" type="text" value={descricaoProduto} onChange={()=>setDescricaoProduto(descricaoProduto)} className="validate"/>
                                     <label className="active" htmlFor="Descrição_produto">Descrição do produto</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Valor_produto" type="text" value={valorProduto} onChange={()=>setValorProduto(valorProduto)} className="validate"/>
+                                    <input disabled id="Valor_produto" type="text" value={valorProduto} onChange={()=>setValorProduto(valorProduto)} className="validate"/>
                                     <label className="active" htmlFor="Valor_produto">Valor do produto</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Codigo_identificacao" type="text" value={id} className="validate"/>
+                                    <input disabled id="Codigo_identificacao" type="text" value={id} className="validate"/>
                                     <label className="active" htmlFor="Codigo_identificacao" >Código de identificação</label>
                                 </div>
                             </div>
@@ -67,9 +67,10 @@ export default function Produto(props){
 
                     <div className="row">
                         <div className="col s12 center">
-                            <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action">Atualizar</button>
-                                <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action" onClick={deletarProduto}>Deletar
-                                </button>
+                            <Link to={`/AtualizaProduto/${id}`}>
+                                <button className="btn waves-effect  pink lighten-2 button botaoAtualiza" type="submit" name="action">Atualizar</button>
+                            </Link>
+                            <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action" onClick={deletarProduto}>Deletar </button>                               
                         </div>
                     </div>
 

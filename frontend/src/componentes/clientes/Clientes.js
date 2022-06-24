@@ -3,7 +3,7 @@ import '../clientes/cadastroCliente.css'
 import M from 'materialize-css'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 
@@ -55,39 +55,39 @@ export default function Cliente(){
                             <div className="collapsible-body">
                                 <div className="row">
                                 <div className="input-field col s12">
-                                    <input id="Nome" type="text" value={nome} onChange={()=>setNome(nome)} className="validate"/>
+                                    <input disabled id="Nome" type="text" value={nome} onChange={()=>setNome(nome)} className="validate"/>
                                     <label className="active" htmlFor="Nome">Nome</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Nome_Social" type="text" value={nomeSocial} onChange={()=>setNome(nomeSocial)} className="validate"/>
+                                    <input disabled id="Nome_Social" type="text" value={nomeSocial} onChange={()=>setNome(nomeSocial)} className="validate"/>
                                     <label className="active" htmlFor="Nome_Social">Nome Social</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Gênero" type="text" value={genero} onChange={()=>setNome(genero)} className="validate"/>
+                                    <input disabled id="Gênero" type="text" value={genero} onChange={()=>setNome(genero)} className="validate"/>
                                     <label className="active" htmlFor="Gênero">Gênero</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="CPF" type="text" value={cpf} onChange={()=>setNome(cpf)} className="validate"/>
+                                    <input disabled id="CPF" type="text" value={cpf} onChange={()=>setNome(cpf)} className="validate"/>
                                     <label className="active" htmlFor="CPF">CPF</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="RG" type="text" value={rg} onChange={()=>setNome(rg)} className="validate"/>
+                                    <input disabled id="RG" type="text" value={rg} onChange={()=>setNome(rg)} className="validate"/>
                                     <label className="active" htmlFor="RG">RG</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Telefone" type="text" value={telefone} onChange={()=>setNome(telefone)} className="validate"/>
+                                    <input disabled id="Telefone" type="text" value={telefone} onChange={()=>setNome(telefone)} className="validate"/>
                                     <label className="active" htmlFor="Telefone">Telefone</label>
                                 </div>
                             </div>
                             </div>
                         </li>
 
-                        {/* produtos */}
+                        {/* produtos
                         <li>
                             <div className="collapsible-header"><i className="material-icons">shopping_cart</i>Produtos</div>
                             <div className="collapsible-body">
@@ -110,7 +110,7 @@ export default function Cliente(){
                         </li>
 
                         {/* Serviços */}
-                        <li>
+                        {/* <li>
                             <div className="collapsible-header"><i className="material-icons">work</i>Serviços</div>
                             <div className="collapsible-body">
 
@@ -130,13 +130,15 @@ export default function Cliente(){
                                 </div>
 
                             </div>
-                        </li>
-                    </ul>
+                        </li>*/}
+                    </ul>  
 
                     <div className="row">
                         <div className="col s12 center">
-                            <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action">Atualizar
+                            <Link to={`/AtualizaCliente/${id}`}>
+                            <button className="btn waves-effect  pink lighten-2 button botaoAtualiza" type="submit" name="action">Atualizar
                             </button>
+                            </Link>
                             <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action" onClick={deletarCliente}>Remover Cliente</button>
                         </div>
                     </div>

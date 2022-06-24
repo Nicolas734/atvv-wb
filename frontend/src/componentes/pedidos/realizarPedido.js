@@ -1,12 +1,44 @@
 import 'materialize-css/dist/css/materialize.min.css'
 import "../pedidos/pedidos.css"
-import { useEffect } from 'react';
 import M from 'materialize-css';
+import { useEffect, useState } from 'react';
+import axios from 'axios'
 
 export default function RealizarPedido(){
 
+    const [servicos,setServicos] = useState([]);
+    const [produtos,setProdutos] = useState([]);
+    const ExeMaterializeSelect = () => {
+        var elems = document.querySelectorAll("select");
+        var instances = M.FormSelect.init(elems, Option);
+      };
+    
+
+    // -- Lista de Produtos --
+    const listarProdutos = () =>{
+        axios.get(`http://localhost:5000/produto/listarProdutos`).then((res)=>{
+            setProdutos(res.data); 
+            ExeMaterializeSelect()
+
+        }).catch((erro)=>{
+            console.error('Erro', erro.response)
+        }) 
+    }
+
+    // -- Lista de Servicos --
+    const listarServicos = () =>{
+        axios.get(`http://localhost:5000/servico/listarServicos`).then((res)=>{
+            setServicos(res.data);
+            ExeMaterializeSelect()
+        }).catch((erro)=>{
+            console.error('Erro', erro.response)
+        }) 
+    }
+
     useEffect(() => { 
         M.AutoInit()
+        listarProdutos()
+        listarServicos()
     }, [])
 
     return(
@@ -23,16 +55,18 @@ export default function RealizarPedido(){
                     <div className="input-field col s12 opcoes">
                         <select multiple>
                         <option value="" disabled>Selecione o Produto</option>
-                            <option value="1">Pente</option>
-                            <option value="2">Tinta de Cabelo</option>
+                        {produtos.map(prod => (
+                            <option key={prod.id} value={prod.id}>{prod.nomeProduto}</option>
+                        ))}
                         </select>
                     </div>
 
                     <div className="input-field col s12 opcoes">
                         <select multiple>
                         <option value="" disabled>Selecione o Serviço</option>
-                            <option value="1">Corte de Cabelo</option>
-                            <option value="2">Tratamento Capilar</option>
+                        {servicos.map(serv =>(
+                            <option key={serv.id} value={serv.id}>{serv.nomeServico}</option>
+                        ))}
                         </select>
                     </div>
 

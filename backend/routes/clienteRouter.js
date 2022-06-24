@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { criaCliente, listaAllCliente, listaClienteById, atualizaCliente, deleteCliente } from "../controllers/clienteController.js";
+import { criaCliente, listaAllCliente, listaClienteById, atualizaCliente, deleteCliente, getCliByCpf } from "../controllers/clienteController.js";
 
 const router = Router();
 
@@ -12,5 +12,7 @@ router.get('/listarCliente/:id', listaClienteById);
 router.put('/atualizarCliente/:id', atualizaCliente);
 
 router.delete('/removerCliente/:id', deleteCliente);
+
+router.get('/listaClienteByCpf', getCliByCpf)
 
 export default router;
