@@ -21,7 +21,7 @@ const Servico = db.define('servicos',{
     },
 
     valorServico:{
-        type: Sequelize.DECIMAL(10,2),
+        type: Sequelize.INTEGER,
         allowNull: true,        
     }
 })

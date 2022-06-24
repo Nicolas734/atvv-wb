@@ -20,6 +20,7 @@ export default function Cadastros(props){
                 <Link to={'/CadastroCliente'} className="collection-item pointer">Cadastrar Cliente</Link>
                 <Link to={'/CadastroProduto'} className="collection-item pointer">Cadastrar Produtos</Link>
                 <Link to={'/CadastroServico'} className="collection-item pointer">Cadastrar Serviços</Link>
+                <Link to={'/CadastroPedido'} className="collection-item pointer">Cadastrar Pedidos</Link>
             </div>
         </div>
     )

@@ -21,7 +21,7 @@ const Produto = db.define('produtos',{
     },
 
     valorProduto:{
-        type: Sequelize.DECIMAL(10,2),
+        type: Sequelize.INTEGER,
         allowNull: true
     }
 })

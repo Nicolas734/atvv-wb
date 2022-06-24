@@ -15,17 +15,20 @@ export default function Cliente(){
     const [cpf, setCpf] = useState('');
     const [rg, setRg] = useState('');
     const [telefone, setTelefone] = useState('');
-    const { id } = useParams()
-    const navigate = useNavigate()
+    const [pedidos, setPedidos] = useState([]);
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     const listarCliente = () => {
         axios.get(`http://localhost:5000/cliente/listarCliente/${id}`).then((res) => {
-            setNome(res.data.nome)
-            setNomeSocial(res.data.nomeSocial)
-            setGenero(res.data.genero)
-            setCpf(res.data.cpf)
-            setRg(res.data.rg)
-            setTelefone(res.data.telefone)
+            setNome(res.data.nome);
+            setNomeSocial(res.data.nomeSocial);
+            setGenero(res.data.genero);
+            setCpf(res.data.cpf);
+            setRg(res.data.rg);
+            setTelefone(res.data.telefone);
+            setPedidos(res.data.pedidos);
+
         }).catch((erro)=>{
             console.error('Erro', erro.response)
         }) 
@@ -87,50 +90,63 @@ export default function Cliente(){
                             </div>
                         </li>
 
-                        {/* produtos
+
                         <li>
                             <div className="collapsible-header"><i className="material-icons">shopping_cart</i>Produtos</div>
                             <div className="collapsible-body">
-                            
-                                <div className="input-field col s12">
-                                    <input id="Descricao_produto" type="text" className="validate"/>
-                                    <label className="active" htmlFor="Descricao_produto">Descrição do produto</label>
-                                </div>
 
-                                <div className="input-field col s12">
-                                    <input id="Valor_produto" type="text" className="validate"/>
-                                    <label className="active" htmlFor="Valor_produto">Valor do produto</label>
-                                </div>
+                                <table className='responsive-table centered'>
+                                        <thead>
+                                        <tr>
+                                            <th>Id do Pedido</th>
+                                            <th>Id do Produto</th>
+                                            <th>Nome do Produto</th>
+                                            <th>Valor do Produto</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {pedidos.map(ped => (
+                                        <tr>
+                                            {ped.produto ? (<td>{ped.ped_id}</td>):(<></>) }
+                                            {ped.produto ? (<td>{ped.produto?.id}</td>):(<></>) }
+                                            {ped.produto ? (<td>{ped.produto?.nomeProduto}</td>):(<></>) }
+                                            {ped.produto ? (<td>{ped.produto?.valorProduto}</td>):(<></>) }
+                                        </tr>                          
+                                        ))}
+                                        </tbody>
+                                </table>
 
-                                <div className="input-field col s12">
-                                    <input id="Codigo_identificacao" type="text" className="validate"/>
-                                    <label className="active" htmlFor="Codigo_identificacao">Código de identificação</label>
-                                </div>
                             </div>
                         </li>
 
-                        {/* Serviços */}
-                        {/* <li>
+
+                        <li>
                             <div className="collapsible-header"><i className="material-icons">work</i>Serviços</div>
                             <div className="collapsible-body">
 
-                                <div className="input-field col s12">
-                                    <input id="Descricao_servico" type="text" className="validate"/>
-                                    <label className="active" htmlFor="Descricao_servico">Descrição do serviço</label>
-                                </div>
-
-                                <div className="input-field col s12">
-                                    <input id="Valor_servico" type="text" className="validate"/>
-                                    <label className="active" htmlFor="Valor_servico">Valor do serviço</label>
-                                </div>
-
-                                <div className="input-field col s12">
-                                    <input id="Codigo_identificacaoServ" type="text" className="validate"/>
-                                    <label className="active" htmlFor="Codigo_identificacaoServ">Código de identificação</label>
-                                </div>
+                            <table className='responsive-table centered'>
+                                        <thead>
+                                        <tr>
+                                            <th>Id do Pedido</th>
+                                            <th>Id do Serviço</th>
+                                            <th>Nome do Serviço</th>
+                                            <th>Valor do Serviço</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {pedidos.map(serv => (
+                                        <tr>
+                                            {serv.servico ? (<td>{serv.ped_id}</td>):(<></>) }
+                                            {serv.servico ? (<td>{serv.servico?.id}</td>):(<></>) }
+                                            {serv.servico ? (<td>{serv.servico?.nomeServico}</td>):(<></>) }
+                                            {serv.servico ? (<td>{serv.servico?.valorServico}</td>):(<></>) }
+                                        </tr>                          
+                                        ))}
+                                        </tbody>
+                                </table>
 
                             </div>
-                        </li>*/}
+                        </li>
                     </ul>  
 
                     <div className="row">
@@ -139,7 +155,8 @@ export default function Cliente(){
                             <button className="btn waves-effect  pink lighten-2 button botaoAtualiza" type="submit" name="action">Atualizar
                             </button>
                             </Link>
-                            <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action" onClick={deletarCliente}>Remover Cliente</button>
+                            <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action" onClick={deletarCliente}>Remover Cliente
+                            </button>
                         </div>
                     </div>
 

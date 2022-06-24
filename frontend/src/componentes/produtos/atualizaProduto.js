@@ -13,12 +13,12 @@ export default function CadastroProdutos(props){
 
 // -- Atualização de Produto --
 
-
 const listarProduto = () =>{
     axios.get(`http://localhost:5000/produto/listarProduto/${id}`).then((res)=>{
         setNomeProduto(res.data.nomeProduto);
         setDescricaoProduto(res.data.descricaoProduto);
         setValorProduto(res.data.valorProduto);
+        navigate('/Produtos')
 
     }).catch((erro)=>{
         console.error('Erro', erro.response);
@@ -36,7 +36,7 @@ const atualizaProduto = () =>{
         setNomeProduto(null)
         setDescricaoProduto(null)
         setValorProduto(null)
-       
+
         }).catch((erro)=>{
                 console.error('Erro', erro.response)
         }) 

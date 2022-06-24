@@ -19,6 +19,19 @@ export default function ListaClientes(props) {
             }) 
         }
 
+        const filtraGenero = (e) => {
+            if (e.target.value === 'Todos'){
+                listarClientes()
+            }
+            else{
+                axios.get(`http://localhost:5000/listagem/listagemByGenero/${e.target.value}`).then((res) => {
+                    setClientes(res.data.cliente)
+                }).catch((erro)=>{
+                    console.error('Erro', erro.response)
+                }) 
+            }
+        }
+
         useEffect(() => { 
                 M.AutoInit()
                 listarClientes()
@@ -31,12 +44,12 @@ export default function ListaClientes(props) {
             <h2>Listagem de Clientes</h2>
 
             <div className="input-field col s12 opcoes">
-                <select>
-                <option value="" disabled>Listar clientes por genero</option>
-                    <option value="1">Todos</option>
-                    <option value="2">Masculino</option>
-                    <option value="3">Feminino</option>
-                    <option value="4">Não Informado</option>
+                <select onChange={filtraGenero}>
+                <option value="" disabled>Listar Clientes por Gênero</option>
+                    <option value="Todos">Todos</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                    <option value="N">Não Informado</option>
                 </select>
             </div>
 

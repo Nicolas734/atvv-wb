@@ -106,10 +106,10 @@ export const listMostConsumByGenero = async (req,res) =>{
                 attributes:['id','nome','cpf','telefone','genero']
             },{
                 model:Produto,
-                attributes:['id', 'nomeProduto']
+                attributes:['id', 'nomeProduto','valorProduto']
             },{
                 model:Servico,
-                attributes:['id','nomeServico']
+                attributes:['id','nomeServico','valorServico']
             }]
         })
 

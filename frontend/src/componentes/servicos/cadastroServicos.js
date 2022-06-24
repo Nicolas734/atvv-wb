@@ -27,7 +27,7 @@ const cadastraServico = () =>{
 
 
     useEffect(()=>{
-       
+
     }, []);
 
         return (

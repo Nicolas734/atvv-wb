@@ -36,7 +36,7 @@ export default function CadastroServicos(){
             setNomeServico(null)
             setDescricaoServico(null)
             setValorServico(null)
-           
+
             }).catch((erro)=>{
                     console.error('Erro', erro.response)
             }) 
@@ -44,7 +44,7 @@ export default function CadastroServicos(){
 
 
     useEffect(()=>{
-       listarServico()
+        listarServico()
     }, []);
 
         return (

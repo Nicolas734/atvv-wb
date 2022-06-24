@@ -31,15 +31,15 @@ export default function CadastroCliente(){
 
     const atualizaCliente = () =>{
         let obj = {
-           nome,
-           nomeSocial,
-           telefone
+            nome,
+            nomeSocial,
+            telefone
         }
         axios.put(`http://localhost:5000/cliente/atualizarCliente/${id}`, obj).then((res) => {
             setNome(null)
             setNomeSocial(null)
             setTelefone(null)
-           
+
             }).catch((erro)=>{
                     console.error('Erro', erro.response)
             }) 

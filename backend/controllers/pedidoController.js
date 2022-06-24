@@ -1,4 +1,7 @@
-import Pedido from "../models/pedido.js"
+import Cliente from "../models/cliente.js";
+import Pedido from "../models/pedido.js";
+import Produto from "../models/produto.js";
+import Servico from "../models/servico.js";
 
 export const criaPedido = async (req,res) => {
     try{
@@ -53,11 +56,24 @@ export const listaPedidoById = async (req,res) => {
         const pedido = await Pedido.findOne({
             where:{
                 ped_id:req.params.id
+            },
+            attributes:['ped_id'],
+            include:[{
+                model:Produto,
+                attributes:['id', 'nomeProduto', 'descricaoProduto', 'valorProduto']
+            },{
+                model:Servico,
+                attributes:['id','nomeServico', 'descricaoServico', 'valorServico']
+            },{
+                model:Cliente,
+                attributes:['id','nome','cpf','telefone']
             }
+        ]
         })
         res.status(201).json(pedido)
 
     }catch(error){
+        console.log(error);
         res.status(500).json({ message:error })
     }
 }

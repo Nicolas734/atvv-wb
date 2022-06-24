@@ -2,7 +2,15 @@
     margin-top: 2rem;
     
 }
+
 .generoConsumoFont{
     font-size: 24px;
+    text-align: center;
+}
+
+.containerlistagem{
+    margin: 0 auto;
+    width: 65%;
+    margin-top: 6rem;
     text-align: center;
 }
