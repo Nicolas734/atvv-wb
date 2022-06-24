@@ -1,17 +1,53 @@
 import 'materialize-css/dist/css/materialize.min.css'
 import '../clientes/cadastroCliente.css'
 import M from 'materialize-css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 
 export default function Cliente(){
+
+    const [nome, setNome] = useState('');
+    const [nomeSocial, setNomeSocial] = useState('');
+    const [genero, setGenero] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [rg, setRg] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const { id } = useParams()
+    const navigate = useNavigate()
+
+    const listarCliente = () => {
+        axios.get(`http://localhost:5000/cliente/listarCliente/${id}`).then((res) => {
+            setNome(res.data.nome)
+            setNomeSocial(res.data.nomeSocial)
+            setGenero(res.data.genero)
+            setCpf(res.data.cpf)
+            setRg(res.data.rg)
+            setTelefone(res.data.telefone)
+        }).catch((erro)=>{
+            console.error('Erro', erro.response)
+        }) 
+    }
+
+    const deletarCliente = () =>{
+        axios.delete(`http://localhost:5000/cliente/removerCliente/${id}`).then((res)=>{
+            navigate('/Clientes')
+
+        }).catch((erro)=>{
+            console.error('Erro', erro.response);
+        }) 
+    }
+
     useEffect(() => { 
         M.AutoInit()
+        listarCliente()
     }, [])
 
     return(
             <div className="containerCli">
-                <h2 className="nomeCli">Natália</h2>
+                <h2 className="nomeCli">{nome}</h2>
                     <ul className="collapsible popout">
                         <li>
                             {/* Cliente */}
@@ -19,42 +55,32 @@ export default function Cliente(){
                             <div className="collapsible-body">
                                 <div className="row">
                                 <div className="input-field col s12">
-                                    <input id="Nome" type="text" className="validate"/>
+                                    <input id="Nome" type="text" value={nome} onChange={()=>setNome(nome)} className="validate"/>
                                     <label className="active" htmlFor="Nome">Nome</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Nome_Social" type="text" className="validate"/>
+                                    <input id="Nome_Social" type="text" value={nomeSocial} onChange={()=>setNome(nomeSocial)} className="validate"/>
                                     <label className="active" htmlFor="Nome_Social">Nome Social</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Gênero" type="text" className="validate"/>
+                                    <input id="Gênero" type="text" value={genero} onChange={()=>setNome(genero)} className="validate"/>
                                     <label className="active" htmlFor="Gênero">Gênero</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="CPF" type="text" className="validate"/>
+                                    <input id="CPF" type="text" value={cpf} onChange={()=>setNome(cpf)} className="validate"/>
                                     <label className="active" htmlFor="CPF">CPF</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Emissao_CPF" type="text" className="validate"/>
-                                    <label className="active" htmlFor="Emissao_CPF">Data Emissão CPF</label>
-                                </div>
-
-                                <div className="input-field col s12">
-                                    <input id="RG" type="text" className="validate"/>
+                                    <input id="RG" type="text" value={rg} onChange={()=>setNome(rg)} className="validate"/>
                                     <label className="active" htmlFor="RG">RG</label>
                                 </div>
 
                                 <div className="input-field col s12">
-                                    <input id="Emissao_RG" type="text" className="validate"/>
-                                    <label className="active" htmlFor="Emissao_RG">Data Emissão RG</label>
-                                </div>
-
-                                <div className="input-field col s12">
-                                    <input id="Telefone" type="text" className="validate"/>
+                                    <input id="Telefone" type="text" value={telefone} onChange={()=>setNome(telefone)} className="validate"/>
                                     <label className="active" htmlFor="Telefone">Telefone</label>
                                 </div>
                             </div>
@@ -111,6 +137,7 @@ export default function Cliente(){
                         <div className="col s12 center">
                             <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action">Atualizar
                             </button>
+                            <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action" onClick={deletarCliente}>Remover Cliente</button>
                         </div>
                     </div>
 

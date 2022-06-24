@@ -1,15 +1,29 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import "../produtos/cadastroProduto.css";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import M from 'materialize-css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 
 export default function ListaProduto(props){
     let estilo = `collection-item active  pink lighten-2 ${props.tema}`
+    const [produtos,setProdutos] = useState([]);
+    const { id } = useParams();
+
+    // -- Lista de Produtos --
+    const listarProdutos = () =>{
+        axios.get(`http://localhost:5000/produto/listarProdutos`).then((res)=>{
+            setProdutos(res.data)
+
+        }).catch((erro)=>{
+            console.error('Erro', erro.response)
+        }) 
+    }
 
     useEffect(() => { 
         M.AutoInit()
+        listarProdutos()
     }, [])
 
         return (
@@ -18,10 +32,9 @@ export default function ListaProduto(props){
                 <h2>Listagem dos Produtos</h2>
 
                 <div className="collection home">
-                    <Link to={"/produto"} className="collection-item pointer">Produto 1</Link>
-                    <Link to={"/produto"} className="collection-item pointer">Produto 2</Link>
-                    <Link to={"/produto"} className="collection-item pointer">Produto 3</Link>
-                    <Link to={"/produto"} className="collection-item pointer">Produto 4</Link>
+                    {produtos.map(prod => (
+                        <Link key={prod.id} to={`/produto/${prod.id}`} className="collection-item pointer">{prod.nomeProduto}</Link>
+                    ))}
                 </div>
             </div>
         )

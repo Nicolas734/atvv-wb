@@ -2,13 +2,26 @@
 import 'materialize-css/dist/css/materialize.min.css'
 import '../clientes/cadastroCliente.css'
 import M from 'materialize-css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export default function ListaClientes(props) {
     const estilo = `collection-item active pink lighten-2${props.tema}`
+
+        const [clientes,setClientes] = useState([])
+
+        const listarClientes = () => {
+            axios.get('http://localhost:5000/cliente/listarClientes').then((res) => {
+                setClientes(res.data)
+            }).catch((erro)=>{
+                console.error('Erro', erro.response)
+            }) 
+        }
+
         useEffect(() => { 
                 M.AutoInit()
+                listarClientes()
         }, [])
 
     return (
@@ -28,11 +41,13 @@ export default function ListaClientes(props) {
             </div>
 
             <div className="collection home">
-                <Link to={"/Cliente"} className="collection-item pointer">Cliente 1</Link>
-                <Link to={"/Cliente"} className="collection-item pointer">Cliente 2</Link>
-                <Link to={"/Cliente"} className="collection-item pointer">Cliente 3</Link>
-                <Link to={"/Cliente"} className="collection-item pointer">Cliente 4</Link>
+                {clientes.map( cli => (
+
+                    <Link key={cli.id} to={`/Cliente/${cli.id}`} className="collection-item pointer">{cli.nome}</Link>
+
+                ))}
             </div>
+
         </div>
     )
 }

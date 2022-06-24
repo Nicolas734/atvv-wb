@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import 'dotenv/config'
 
-const db = new Sequelize('salaowb', 'root', 'fatec2021', {
+const db = new Sequelize(process.env.BD, 'root', process.env.BD_SENHA, {
     dialect: 'mysql',
     host: 'localhost'
   });

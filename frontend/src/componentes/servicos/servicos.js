@@ -1,16 +1,48 @@
 import 'materialize-css/dist/css/materialize.min.css'
 import '../clientes/cadastroCliente.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import M from 'materialize-css'
+import axios from 'axios';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function Servico(){
+
+    const [nomeServico,setNomeServico] = useState('');
+    const [descricaoServico,setDescricaoServico] = useState('');
+    const [valorServico, setValorServico] = useState('');
+    const { id } = useParams();
+    const navigate = useNavigate()
+
+    const listarServico = () =>{
+        axios.get(`http://localhost:5000/servico/listarServico/${id}`).then((res)=>{
+            setNomeServico(res.data.nomeServico);
+            setDescricaoServico(res.data.descricaoServico);
+            setValorServico(res.data.valorServico);
+            console.log(res);
+
+        }).catch((erro)=>{
+            console.error('Erro', erro.response)
+        }) 
+    }
+
+    const deletarServico= () =>{
+        axios.delete(`http://localhost:5000/servico/removerServico/${id}`).then((res)=>{
+            navigate('/Servicos')
+
+        }).catch((erro)=>{
+            console.error('Erro', erro.response);
+        }) 
+        
+    }
+
     useEffect(() => {
         M.AutoInit()
+        listarServico()
     }, [])
 
     return (
         <div className="containerServ">
-        <h2 className="nomeServ">Escova Progressiva</h2>
+        <h2 className="nomeServ">{nomeServico}</h2>
             <ul className="collapsible popout">
                 {/* Serviços */}
                 <li>
@@ -18,17 +50,17 @@ export default function Servico(){
                     <div className="collapsible-body">
 
                         <div className="input-field col s12">
-                            <input id="Descricao_servico" type="text" className="validate"/>
+                            <input id="Descricao_servico" type="text" value={descricaoServico} onChange={()=>setDescricaoServico(descricaoServico)} className="validate"/>
                             <label className="active" htmlFor="Descricao_servico">Descrição do serviço</label>
                         </div>
 
                         <div className="input-field col s12">
-                            <input id="Valor_servico" type="text" className="validate"/>
+                            <input id="Valor_servico" type="text"  value={valorServico} onChange={()=>setValorServico(valorServico)} className="validate"/>
                             <label className="active" htmlFor="Valor_servico">Valor do serviço</label>
                         </div>
 
                         <div className="input-field col s12">
-                            <input id="Codigo_identificacao" type="text" className="validate"/>
+                            <input id="Codigo_identificacao" type="text"  value={id} className="validate"/>
                             <label className="active" htmlFor="Codigo_identificacao">Código de identificação</label>
                         </div>
 
@@ -38,8 +70,8 @@ export default function Servico(){
 
             <div className="row">
                 <div className="col s12 center">
-                    <button className="btn waves-effect pink lighten-2 button" type="submit" name="action">Atualizar
-                    </button>
+                    <button className="btn waves-effect pink lighten-2 button" type="submit" name="action">Atualizar</button>
+                    <button className="btn waves-effect pink lighten-2 button" type="submit" name="action" onClick={deletarServico}>Deletar Serviço</button>
                 </div>
             </div>
 

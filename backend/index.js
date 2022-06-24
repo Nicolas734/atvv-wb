@@ -33,4 +33,4 @@ app.use('/pedido', pedidoRouter);
 
 app.use('/listagem', listagemRouter);
 
-app.listen(5000, ()=> console.log(`Servidor rodando na 5000`));
+app.listen(process.env.PORT, ()=> console.log(`Servidor rodando na ${process.env.PORT}.`));

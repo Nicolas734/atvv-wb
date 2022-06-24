@@ -23,9 +23,9 @@ export default function Rotas(){
             <Route path="/CadastroCliente" element={<CadastroCliente tema="purple lighten-4"/>} />
             <Route path="/CadastroProduto" element={<CadastroProdutos tema="purple lighten-4"/>}/>
             <Route path="/CadastroServico" element={<CadastroServicos tema="purple lighten-4"/>}/>
-            <Route path="/Cliente" element={<Cliente tema="purple lighten-4"/>}/>
-            <Route path="/Produto" element={<Produto tema="purple lighten-4"/>}/>
-            <Route path="/Servico" element={<Servico tema="purple lighten-4"/>}/>
+            <Route path="/Cliente/:id" element={<Cliente tema="purple lighten-4"/>}/>
+            <Route path="/Produto/:id" element={<Produto tema="purple lighten-4"/>}/>
+            <Route path="/Servico/:id" element={<Servico tema="purple lighten-4"/>}/>
             <Route path="/Listagens" element={<Listagens tema="purple lighten-4"/>}/>
             <Route path="/Pedidos" element={<RealizarPedido tema="purple lighten-4"/>}/>
         </Routes>
