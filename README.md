@@ -23,9 +23,24 @@ deu origem a empresa de desenvolvimento de software. Busque os requisitos na doc
 ```
 git clone https://github.com/Nicolas734/atvv-wb.git
 ```
+Para Rodar o BackEnd
 - Na pasta raiz do projeto, digite:
 ```
 cd .\backend
+```
+- Agora instale as dependências do projeto:
+``` 
+npm install
+``` 
+- Execute a aplicação pelo seguinte comando:
+```
+npm start
+
+- Volte para a pasta raiz
+Para Rodar o FrontEnd
+- Na pasta raiz do projeto, digite:
+```
+cd .\front
 ```
 - Agora instale as dependências do projeto:
 ``` 

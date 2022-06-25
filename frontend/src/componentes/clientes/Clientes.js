@@ -51,12 +51,18 @@ export default function Cliente(){
     return(
             <div className="containerCli">
                 <h2 className="nomeCli">{nome}</h2>
-                    <ul className="collapsible popout">
-                        <li>
-                            {/* Cliente */}
-                            <div className="collapsible-header home"><i className="material-icons">person</i>Dados Pessoais</div>
-                            <div className="collapsible-body">
-                                <div className="row">
+                <div className="row">
+                        <div className="col s12">
+                            <ul className="tabs-swipe-demo tabs tabsConsumo">
+                                <li className="tab col s2"><a href="#test-swipe-1">Dados Pessoaisa</a></li>
+                                <li className="tab col s2"><a href="#test-swipe-2">Produtos</a></li>
+                                <li className="tab col s2"><a href="#test-swipe-3">Serviços</a></li>                   
+                            </ul>
+                        </div>
+                        
+                        <div id="test-swipe-1" className="col s12"> 
+                            {/* Cliente */}                        
+                            <div className="row home">
                                 <div className="input-field col s12">
                                     <input disabled id="Nome" type="text" value={nome} onChange={()=>setNome(nome)} className="validate"/>
                                     <label className="active" htmlFor="Nome">Nome</label>
@@ -86,69 +92,59 @@ export default function Cliente(){
                                     <input disabled id="Telefone" type="text" value={telefone} onChange={()=>setNome(telefone)} className="validate"/>
                                     <label className="active" htmlFor="Telefone">Telefone</label>
                                 </div>
-                            </div>
-                            </div>
-                        </li>
-
-
-                        <li>
-                            <div className="collapsible-header"><i className="material-icons">shopping_cart</i>Produtos</div>
-                            <div className="collapsible-body">
-
-                                <table className='responsive-table centered'>
-                                        <thead>
-                                        <tr>
-                                            <th>Id do Pedido</th>
-                                            <th>Id do Produto</th>
-                                            <th>Nome do Produto</th>
-                                            <th>Valor do Produto</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {pedidos.map(ped => (
-                                        <tr>
-                                            {ped.produto ? (<td>{ped.ped_id}</td>):(<></>) }
-                                            {ped.produto ? (<td>{ped.produto?.id}</td>):(<></>) }
-                                            {ped.produto ? (<td>{ped.produto?.nomeProduto}</td>):(<></>) }
-                                            {ped.produto ? (<td>{ped.produto?.valorProduto}</td>):(<></>) }
-                                        </tr>                          
-                                        ))}
-                                        </tbody>
-                                </table>
 
                             </div>
-                        </li>
-
-
-                        <li>
-                            <div className="collapsible-header"><i className="material-icons">work</i>Serviços</div>
-                            <div className="collapsible-body">
-
-                            <table className='responsive-table centered'>
-                                        <thead>
-                                        <tr>
-                                            <th>Id do Pedido</th>
-                                            <th>Id do Serviço</th>
-                                            <th>Nome do Serviço</th>
-                                            <th>Valor do Serviço</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {pedidos.map(serv => (
-                                        <tr>
-                                            {serv.servico ? (<td>{serv.ped_id}</td>):(<></>) }
-                                            {serv.servico ? (<td>{serv.servico?.id}</td>):(<></>) }
-                                            {serv.servico ? (<td>{serv.servico?.nomeServico}</td>):(<></>) }
-                                            {serv.servico ? (<td>{serv.servico?.valorServico}</td>):(<></>) }
-                                        </tr>                          
-                                        ))}
-                                        </tbody>
-                                </table>
-
-                            </div>
-                        </li>
-                    </ul>  
-
+                        </div>   
+        
+                           
+                        <div id="test-swipe-2" className="col s12"> 
+                            <table className='responsive-table centered home'>
+                                <thead>
+                                    <tr>
+                                        <th>Id do Pedido</th>
+                                        <th>Id do Produto</th>
+                                        <th>Nome do Produto</th>
+                                        <th>Valor do Produto</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {pedidos.map(ped => (
+                                    <tr>
+                                        {ped.produto ? (<td>{ped.ped_id}</td>):(<></>) }
+                                        {ped.produto ? (<td>{ped.produto?.id}</td>):(<></>) }
+                                        {ped.produto ? (<td>{ped.produto?.nomeProduto}</td>):(<></>) }
+                                        {ped.produto ? (<td>{ped.produto?.valorProduto}</td>):(<></>) }
+                                    </tr>                          
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                                                   
+                            
+                        <div id="test-swipe-3" className="col s12">
+                            <table className='responsive-table centered home'>
+                                <thead>
+                                    <tr>
+                                        <th>Id do Pedido</th>
+                                        <th>Id do Serviço</th>
+                                        <th>Nome do Serviço</th>
+                                        <th>Valor do Serviço</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {pedidos.map(serv => (
+                                    <tr>
+                                        {serv.servico ? (<td>{serv.ped_id}</td>):(<></>) }
+                                        {serv.servico ? (<td>{serv.servico?.id}</td>):(<></>) }
+                                        {serv.servico ? (<td>{serv.servico?.nomeServico}</td>):(<></>) }
+                                        {serv.servico ? (<td>{serv.servico?.valorServico}</td>):(<></>) }
+                                    </tr>                          
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                      
                     <div className="row">
                         <div className="col s12 center">
                             <Link to={`/AtualizaCliente/${id}`}>
@@ -158,8 +154,8 @@ export default function Cliente(){
                             <button className="btn waves-effect  pink lighten-2 button" type="submit" name="action" onClick={deletarCliente}>Remover Cliente
                             </button>
                         </div>
-                    </div>
-
-            </div>
+                    </div>     
+                </div>
+            </div> 
     )
 }
