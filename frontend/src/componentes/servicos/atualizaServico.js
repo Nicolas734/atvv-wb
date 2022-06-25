@@ -36,6 +36,7 @@ export default function CadastroServicos(){
             setNomeServico(null)
             setDescricaoServico(null)
             setValorServico(null)
+            navigate('/Servicos')
 
             }).catch((erro)=>{
                     console.error('Erro', erro.response)
@@ -51,7 +52,7 @@ export default function CadastroServicos(){
             <div className="containerServ">
                 <div className="row ">
                 <h4>Cadastro de Serviço</h4>
-                    <form className="col s12 formServ ">
+                    <div className="col s12 formServ ">
                         <div className="row">
                             <div className="input-field col s6 ">
                                 <input value={nomeServico} id="Nome_Servicos" type="text" className="validate" onChange={e=>setNomeServico(e.target.value)}/>
@@ -72,13 +73,11 @@ export default function CadastroServicos(){
 
                         <div className="row">
                             <div className="col s12 center">
-                                <Link to={'/Servicos'}>
-                                    <button className="btn waves-effect waves-light pink lighten-2" type="submit" name="action" onClick={atualizaServico}>Atualizar Serviço
+                                    <button className="btn waves-effect waves-light pink lighten-2" type="button" onClick={atualizaServico}>Atualizar Serviço
                                     </button>
-                                </Link>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         )

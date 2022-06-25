@@ -18,8 +18,7 @@ const listarProduto = () =>{
         setNomeProduto(res.data.nomeProduto);
         setDescricaoProduto(res.data.descricaoProduto);
         setValorProduto(res.data.valorProduto);
-        navigate('/Produtos')
-
+       
     }).catch((erro)=>{
         console.error('Erro', erro.response);
     }) 
@@ -36,6 +35,7 @@ const atualizaProduto = () =>{
         setNomeProduto(null)
         setDescricaoProduto(null)
         setValorProduto(null)
+        navigate('/Produtos')
 
         }).catch((erro)=>{
                 console.error('Erro', erro.response)
@@ -50,7 +50,7 @@ const atualizaProduto = () =>{
         <div className="containerProd">
                 <div className="row ">
                     <h4>Cadastro de Produto</h4>
-                    <form className="col s12 formProd">
+                    <div className="col s12 formProd">
                         <div className="row">
                             <div className="input-field col s6 ">
                                 <input value={nomeProduto} id="Nome_produto"  type="text" className="validate" onChange={e=>setNomeProduto(e.target.value)}/>
@@ -70,13 +70,12 @@ const atualizaProduto = () =>{
                             </div>                           
                         </div>                        
                         <div className="row">
-                            <div className="col s12 center">
-                                <Link to={'/Produtos'}>
-                                <button className="btn waves-effect waves-light pink lighten-2" type="submit" name="action" onClick={atualizaProduto}>Atualizar Produto
-                                </button></Link>
+                            <div className="col s12 center">                                
+                                <button className="btn waves-effect waves-light pink lighten-2" type="button" onClick={atualizaProduto}>Atualizar Produto
+                                </button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
     );

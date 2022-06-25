@@ -39,6 +39,7 @@ export default function CadastroCliente(){
             setNome(null)
             setNomeSocial(null)
             setTelefone(null)
+            navigate('/Clientes')            
 
             }).catch((erro)=>{
                     console.error('Erro', erro.response)
@@ -53,8 +54,8 @@ export default function CadastroCliente(){
     return (
         <div className="containerCli">
                 <div className="row ">
-                <h4>Cadastro do Cliente</h4>
-                    <form className="col s12 formCli">
+                <h4>Atualizar Dados Cliente</h4>
+                    <div className="col s12 formCli">
                         <div className="row">
                             <div className="input-field col s6 ">
                                 <input value={nome} id="Nome" type="text" className="validate" onChange={e=>setNome(e.target.value)}/>
@@ -67,10 +68,7 @@ export default function CadastroCliente(){
                         </div>
 
                         <div className="row">
-                            {/* <div className="input-field col s6 ">
-                                <input value={genero} id="Genero" type="text" className="validate" onChange={e=>setGenero(e.target.value)}/>
-                                <label className='active' htmlFor="Genero">Gênero</label>
-                            </div> */}
+                            
                             <div className="input-field col s6">
                                 <input value={telefone} id="Telefone" type="text" className="validate" onChange={e=>setTelefone(e.target.value)}/>
                                 <label className='active' htmlFor="Telefone">(DDD) Telefone</label>
@@ -79,13 +77,11 @@ export default function CadastroCliente(){
 
                         <div className="row">
                             <div className="col s12 center ">
-                            <Link to={'/Clientes'}>
-                                <button className="btn waves-effect waves-light pink lighten-2" type="submit" name="action" onClick={atualizaCliente}>Atualizar Cliente
-                                </button>
-                            </Link>
+                            <button className="btn waves-effect waves-light pink lighten-2" type="button"  onClick={atualizaCliente}>Atualizar Cliente
+                            </button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
 
